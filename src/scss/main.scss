@@ -1,16 +1,57 @@
 @import "_normalize";
 @import "_variables";
-
+@import url("https://fonts.googleapis.com/css?family=Roboto:500&display=swap");
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
-  color: $yellow;
-  background: $violet;
+  background-color: #3767ad;
+}
+
+.main {
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.counter {
+  position: relative;
+  display: flex;
+  margin-bottom: 48px;
+  &__text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 112px;
+  }
+}
+
+.button {
+  &--add {
+    padding: 11px 33px;
+    font-size: 18px;
+    line-height: 21px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    margin-bottom: 32px;
+  }
+
+  &--remove {
+    color: #f5e5e7;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
