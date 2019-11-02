@@ -1,22 +1,44 @@
 "use strict";
-
-// service worker registration - remove if you're not going to use it
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("serviceworker.js").then(
+      function(registration) {
+        console.log(
+          "ServiceWorker registration successful with scope: ",
+          registration.scope
+        );
+      },
+      function(err) {
+        console.log("ServiceWorker registration failed: ", err);
+      }
+    );
   });
 }
 
-// place your code below
+const addButton = document.querySelector(".button--add-js");
+const removeButton = document.querySelector(".button--remove-js");
+const counterText = document.querySelector(".counter__text--js");
+const key = new Date().toISOString().slice(0, 10);
 
+let counter = parseInt(
+  localStorage.getItem(key) ? localStorage.getItem(key) : 0
+);
 
-console.log(`Hello world!`);
+const updateCounter = () => {
+  counterText.innerHTML = counter;
+  localStorage.setItem(key, counter);
+};
 
+addButton.addEventListener("click", e => {
+  counter += 1;
+  updateCounter();
+});
 
+removeButton.addEventListener("click", e => {
+  if (counter > 0) {
+    counter -= 1;
+    updateCounter();
+  }
+});
+
+updateCounter();
